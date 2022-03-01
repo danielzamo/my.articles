@@ -6,9 +6,17 @@ date: 01/03/2022
 
 # Instalación y configuración mínima de Cobbler sobre CentOS 7
 
+![GUI Cobbler][cobbler.init]
+
 ## Objetivo
 
 > En este artículo se describe como instalar y configurar Cobbler sobre CentOS 7.
+
+## Qué es Cobbler?
+
+Cobbler es un servidor de instalación de Linux gratuito y de código abierto que se puede utilizar para automatizar los entornos de instalación de red desde una ubicación central. Le permite instalar sistemas operativos automáticamente en múltiples sistemas simultáneamente y también lo ayuda a administrar actualizaciones de paquetes, administración de configuración, administración de DNS, DHCP y mucho más. Es una alternativa a Satelllite de RHEL.
+
+En este trabajo, se instala y configura Cobbler en un servidor CentOS 7, que es un guest VM basado en VMWare Player.
 
 ### Dependencias cumplidas
 
@@ -17,6 +25,8 @@ Las tareas se han realizado en un servidor con las siguientes especificaciones y
 - Distribución Linux: CentOS 7. Con todos los parches actualizados.
 - El sistema Linux tiene una configuración mínima inicial.
 - Para las tareas, salvo que se indique expresamente, se ha utilizado los comandos `sudo`. De modo que este paquete ya esta correctamente configurado.
+- Ip donde se instala: `172.16.38.32`
+- Resolución DNS - IP utilizada en el laboratorio: `malbec.my-lenovo.net 172.16.38.32`
 
 **Nota:** En las siguientes sesiones de trabajo (realizadas desde el _CLI_ de Linux), el prompt del sistema es `~$ `
 **Nota 2:** Para mas simplicidad de este artículo, los ficheros editados (configurados/modificados) son compartidos en este repositorio. En el código que se expone a continuación, se adjunta en formato de link del tipo `file:///` En los casos de datos sensibles, los mismos son ofuscados. 
@@ -70,3 +80,13 @@ Las tareas se han realizado en un servidor con las siguientes especificaciones y
 ~$ cobbler check
 ~$ cobbler sync
 ```
+## Ingreso a la gui web de Cobbler
+
+En [esta captura][cobbler.init] se muestra el ingreso a la interface web del Cobbler instalado. Las credenciales para logarse inicialmente es:
+
+|usuario|contraseña
+|:--:|:--:
+||
+
+
+[cobbler.init]: img/cobbler.init.png
