@@ -4,7 +4,7 @@ title: Cobbler en CentOS 7
 date: 01/03/2022
 ---
 
-# Instalar Cobbler en CentOS 7
+# Instalación y configuración mínima de Cobbler sobre CentOS 7
 
 ## Objetivo
 
@@ -42,7 +42,10 @@ Las tareas se han realizado en un servidor con las siguientes especificaciones y
 ~$ sed -i.org -e 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config    # No es obligatorio
 ~$ #getenforce 
 ~$ systemctl enable --now httpd
-~$ firewall-cmd --add-port=80/tcp --permanent; firewall-cmd --add-port=443/tcp --permanent; firewall-cmd --add-service=dhcp --permanent; firewall-cmd --add-port=69/tcp --permanent; firewall-cmd --add-port=69/udp --permanent; firewall-cmd --add-port=4011/udp --permanent; firewall-cmd --reload
+~$ firewall-cmd --add-port=80/tcp --permanent; firewall-cmd --add-port=443/tcp --permanent; 
+~$ firewall-cmd --add-service=dhcp --permanent; firewall-cmd --add-port=69/tcp --permanent; 
+~$ firewall-cmd --add-port=69/udp --permanent; firewall-cmd --add-port=4011/udp --permanent; 
+~$ firewall-cmd --reload
 ~$ #systemctl stop firewalld
 ~$ cat /etc/httpd/conf.d/cobbler.conf
 #.... VER FICHERO
