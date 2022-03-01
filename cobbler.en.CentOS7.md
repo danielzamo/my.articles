@@ -18,6 +18,9 @@ Las tareas se han realizado en un servidor con las siguientes especificaciones y
 - El sistema Linux tiene una configuración mínima inicial.
 - Para las tareas, salvo que se indique expresamente, se ha utilizado los comandos `sudo`. De modo que este paquete ya esta correctamente configurado.
 
+**Nota:** En las siguientes sesiones de trabajo (realizadas desde el _CLI_ de Linux), el prompt del sistema es `~$ `
+**Nota 2:** Para mas simplicidad de este artículo, los ficheros editados (configurados/modificados) son compartidos en este repositorio. En el código que se expone a continuación, se adjunta en formato de link del tipo `file:///` En los casos de datos sensibles, los mismos son ofuscados. 
+
 ## Actualizando el sistema
 
 ```bash
@@ -42,78 +45,24 @@ Las tareas se han realizado en un servidor con las siguientes especificaciones y
 ~$ firewall-cmd --add-port=80/tcp --permanent; firewall-cmd --add-port=443/tcp --permanent; firewall-cmd --add-service=dhcp --permanent; firewall-cmd --add-port=69/tcp --permanent; firewall-cmd --add-port=69/udp --permanent; firewall-cmd --add-port=4011/udp --permanent; firewall-cmd --reload
 ~$ #systemctl stop firewalld
 ~$ cat /etc/httpd/conf.d/cobbler.conf
-AliasMatch ^/cblr(?!/svc/)(.*)?$ "/var/www/cobbler$1"
-AliasMatch ^/cobbler_track(.*)?$ "/var/www/cobbler$1"
-#AliasMatch ^/cobbler(.*)?$ "/var/www/cobbler$1"
-Alias /cobbler /var/www/cobbler
-Alias /cobbler_webui_content /var/www/cobbler_webui_content
-WSGIScriptAliasMatch ^/cblr/svc/([^/]*) /var/www/cobbler/svc/services.py
-<Directory "/var/www/cobbler">
-    SetEnv VIRTUALENV 
-    Options Indexes FollowSymLinks
-    Order allow,deny
-    Allow from all
-</Directory>
-ProxyRequests off
-ProxyPass /cobbler_api http://127.0.0.1:25151/
-ProxyPassReverse /cobbler_api http://127.0.0.1:25151/
-BrowserMatch "MSIE" AuthDigestEnableQueryStringHack=On
-<Directory "/var/www/cobbler/web/">
-    Options Indexes FollowSymLinks
-    Order allow,deny
-    Allow from all
-</Directory>
-<IfVersion >= 2.4>
-    <Location /cblr>
-        Require all granted
-    </Location>
-</IfVersion>
+#.... VER FICHERO
 
 ~$ cat /etc/httpd/conf.d/cobbler_web.conf
-<Directory "/usr/share/cobbler/web/">
-        <IfModule mod_ssl.c>
-            SSLRequireSSL
-        </IfModule>
-        <IfModule mod_nss.c>
-            NSSRequireSSL
-        </IfModule>
-        SetEnv VIRTUALENV 
-        Options Indexes MultiViews
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-</Directory>
-<Directory "/var/www/cobbler_webui_content/">
-        <IfModule mod_ssl.c>
-            SSLRequireSSL
-        </IfModule>
-        <IfModule mod_nss.c>
-            NSSRequireSSL
-        </IfModule>
-        Options +Indexes +FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-</Directory>
-WSGISocketPrefix /var/run/wsgi
-WSGIScriptAlias /cobbler_web /usr/share/cobbler/web/cobbler.wsgi
-WSGIDaemonProcess cobbler_web display-name=%{GROUP}
-WSGIProcessGroup cobbler_web
-WSGIPassAuthorization On
-<IfVersion >= 2.4>
-    <Location /cobbler_web>
-            Require all granted
-    </Location>
-    <Location /cobbler_webui_content>
-        Require all granted
-    </Location>
-</IfVersion>
+#.... VER FICHERO
 
 ~$ openssl passwd -1       # genero password.
-~$ cat /etc/cobbler/settings 
+~$ cat /etc/cobbler/settings
+#.... VER FICHERO
+
 ~$ cat /etc/cobbler/dhcp.template 
+#.... VER FICHERO
+
 ~$ cat /etc/cobbler/dnsmasq.template 
+#.... VER FICHERO
+
 ~$ cat /etc/cobbler/dhcp.template 
+#.... VER FICHERO
+
 ~$ systemctl restart cobblerd xinetd 
 ~$ cobbler check
 ~$ cobbler sync
