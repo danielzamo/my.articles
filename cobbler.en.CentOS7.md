@@ -16,6 +16,8 @@ date: 01/03/2022
 
 Cobbler es un servidor de instalación de Linux gratuito y de código abierto que se puede utilizar para automatizar los entornos de instalación de red desde una ubicación central. Le permite instalar sistemas operativos automáticamente en múltiples sistemas simultáneamente y también lo ayuda a administrar actualizaciones de paquetes, administración de configuración, administración de DNS, DHCP y mucho más. Es una alternativa a Satelllite de RHEL.
 
+Con Cobbler, entre otras tareas de administración (oruestación), se puede realizar instalaciones de servidores basados en varios sistemas operativos. Se puede instalar y reinstalar rápidamente servidores físicos y máquinas virtuales a través del arranque en red (PXE), y también puede administrar servicios de DHCP, DNS, etc.
+
 En este trabajo, se instala y configura Cobbler en un servidor CentOS 7, que es un guest VM basado en VMWare Player.
 
 ### Dependencias cumplidas
@@ -86,7 +88,7 @@ En [esta captura][cobbler.init] se muestra el ingreso a la interface web del Cob
 
 |usuario|contraseña
 |:--:|:--:
-||
+|cobbler|cobbler
 
 
 [cobbler.init]: img/cobbler.init.png
